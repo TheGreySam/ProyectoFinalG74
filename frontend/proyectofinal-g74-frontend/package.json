@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "author": "Sebastian Gómez Letelier",
+  "author": "Sebastian Gómez Letelier, Alfredo Arredondo, Matias Rojas",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
