@@ -3,11 +3,30 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+//import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './views/Home'
+import About from './views/About'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+      <Router>
+        <Navbar />
+        <div style={{ padding: "1rem" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        </div>
+      </Router>
+      
+
+
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
