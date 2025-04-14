@@ -6,9 +6,17 @@ import './App.css'
 //import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
 import Home from './views/Home'
-import About from './views/About'
+import CreatePost from './views/CreatePost';
+import Gallery from './views/Gallery';
+import Login from './views/Login';
+import MyPosts from './views/MyPosts';
+import Profile from './views/Profile';
+import Register from './views/Register';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,14 +28,21 @@ function App() {
         <div style={{ padding: "1rem" }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/Gallery" element={<Gallery />} />
+          <Route path="/CrearPublicacion" element={<CreatePost />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/MyPosts" element={<MyPosts />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
         </div>
+        <Footer />
       </Router>
       
 
 
-      <div>
+      {/* <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -46,7 +61,7 @@ function App() {
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
-      </p>
+      </p> */}
     </>
   )
 }
