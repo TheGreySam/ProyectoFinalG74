@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import './App.css'
 
 //import { BrowserRouter, Router, Routes, Route } from 'react-router-dom'
@@ -50,6 +52,7 @@ function App() {
               <Route path="/Gracias" element={<Thanks />} />
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Routes>
+            <ToastContainer />
           </div>
           <Footer />
         </Router>

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const CartContext = createContext();
 
@@ -21,6 +22,10 @@ export function CartProvider({ children }) {
     };
     setCart((prev) => [...prev, cartItem]);
     // Check if the product is already in the cart
+    toast.success(`${product.name} agregado al carrito!`, {
+      position: "top-right",
+      autoClose: 2000,
+    });
   }
     
   const removeFromCart = (cartItemid) => {

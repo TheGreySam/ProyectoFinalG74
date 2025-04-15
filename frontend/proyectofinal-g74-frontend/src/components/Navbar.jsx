@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaHeart, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
+import { useCart } from "../context/CartContext";
 
 export default function Navbar() {
+  const { cart } = useCart();
   const [toggle, setToggle] = useState(false);
 
   const showNav = () => {
@@ -50,7 +52,13 @@ export default function Navbar() {
             <i className="fas fa-heart text-blue w-9 h-9 flex justify-center items-center hover:text-black text-2xl"></i>
           </Link>
           <Link to="/Checkout" class="hover:text-blue-200 transition" >
-            <i className="fas fa-shopping-cart text-blue w-9 h-9 flex justify-center items-center hover:text-black text-2xl"></i>
+            <i className="fas fa-shopping-cart text-blue w-9 h-9 flex justify-center items-center hover:text-black text-2xl">
+            {cart.length > 0 && (
+              <span className="right-10 bg-red-500 text-white rounded-full px-2 py-1 text-xs">
+                {cart.length}
+              </span>
+            )}
+            </i>
           </Link>
           <Link to="/Profile" class="hover:text-blue-200 transition" >
             <i className="fas fa-user text-blue w-9 h-9 flex justify-center items-center hover:text-black text-2xl"></i>
