@@ -15,6 +15,7 @@ import Login from './views/Login';
 import MyPosts from './views/MyPosts';
 import Profile from './views/Profile';
 import Register from './views/Register';
+import PromotePost from './views/PromotePost';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/CrearPublicacion" element={<CreatePost />} />
+          <Route path="/PromocionarPublicacion" element={<PromotePost />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/MyPosts" element={<MyPosts />} />
           <Route path="/Profile" element={<Profile />} />
