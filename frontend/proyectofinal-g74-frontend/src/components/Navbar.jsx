@@ -7,7 +7,7 @@ export default function Navbar() {
       <div class="container mx-auto flex justify-between items-center">
         <div class="flex items-center">
           <Link to="/" class="text-2xl font-bold" >
-            ZoeChalupas
+            Wilfred
           </Link>
 
           <div class="hidden md:flex ml-10 space-x-6">
