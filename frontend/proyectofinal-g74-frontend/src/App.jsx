@@ -21,6 +21,7 @@ import DetailPost from './views/DetailPost';
 import FavoritePosts from './views/FavoritePosts';
 import ShoppingCart from './views/ShoppingCart';
 import Checkout from './views/Checkout';
+import Thanks from './views/Thanks';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 
@@ -46,6 +47,7 @@ function App() {
               <Route path="/Checkout" element={<Checkout />} />
               <Route path="/Profile" element={<Profile />} />
               <Route path="/Register" element={<Register />} />
+              <Route path="/Gracias" element={<Thanks />} />
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Routes>
           </div>

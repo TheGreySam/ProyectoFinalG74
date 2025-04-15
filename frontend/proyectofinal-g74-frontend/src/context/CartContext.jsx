@@ -14,8 +14,18 @@ export function CartProvider({ children }) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (product) => setCart((prev) => [...prev, product]);
-  const removeFromCart = (id) => setCart((prev) => prev.filter(p => p.id !== id));
+  const addToCart = (product) => {
+    const cartItem = {
+        ...product,
+        cartItemId: Date.now() + Math.random()
+    };
+    setCart((prev) => [...prev, cartItem]);
+    // Check if the product is already in the cart
+  }
+    
+  const removeFromCart = (cartItemid) => {
+    setCart((prev) => prev.filter((item) => item.cartItemId !== cartItemid));
+  }
   const clearCart = () => setCart([]);
 
   return (
