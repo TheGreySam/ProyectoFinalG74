@@ -17,6 +17,9 @@ import Profile from './views/Profile';
 import Register from './views/Register';
 import PromotePost from './views/PromotePost';
 import DetailPost from './views/DetailPost';
+import FavoritePosts from './views/FavoritePosts';
+import ShoppingCart from './views/ShoppingCart';
+import Checkout from './views/Checkout';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 
@@ -33,9 +36,12 @@ function App() {
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/CrearPublicacion" element={<CreatePost />} />
           <Route path="/PromocionarPublicacion" element={<PromotePost />} />
-          <Route path="/DetailPost/:id" element={<DetailPost />} />
+          <Route path="/DetallePublicacion/:id" element={<DetailPost />} />
+          <Route path="/Favoritos" element={<FavoritePosts />} />
           <Route path="/Login" element={<Login />} />
-          <Route path="/MyPosts" element={<MyPosts />} />
+          <Route path="/UsuarioPublicacion" element={<MyPosts />} />
+          <Route path="/Shopping" element={<ShoppingCart />} />
+          <Route path="/Checkout" element={<Checkout />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Register" element={<Register />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
