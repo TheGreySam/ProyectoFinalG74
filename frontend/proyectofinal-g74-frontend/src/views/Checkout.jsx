@@ -25,21 +25,40 @@ export default function Checkout() {
                 </div>
 
                 {cart.length === 0 ? (
-                        <p>Tu Carrito esta vacio.</p>
-                    ) : (
-                        <>
+                    <p>Tu Carrito esta vacio.</p>
+                ) : (
+                    <>
                         <ul>
-                        {cart.map((item) => (
-                            <li key={item.cartItemId}>
-                                {item.name} - ${item.price}
-                                <button onClick={() => removeFromCart(item.cartItemId)}>Eliminar</button> 
-                            </li>
-                        ))}
+                            {cart.map((item) => (
+                                <li key={item.cartItemId}
+                                    class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md"
+                                >
+                                    <div class="mb-1 flex justify-between">
+                                        <p class="text-gray-700">{item.name}</p>
+                                        <p class="text-gray-700">${item.price}</p>
+                                        
+                                    </div>
+
+                                    <button
+                                    className="p-10 mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600" 
+                                    onClick={() => removeFromCart(item.cartItemId)}>
+                                        Eliminar
+                                    </button>
+                                </li>
+                            ))}
                         </ul>
-                        <p>Total: ${total}</p>
-                        <button onClick={handlePay}>Finalizar Compra</button>
-                        </>
-                    )}
+                        <hr class="my-4" />
+                        <div class="flex justify-between">
+                            <p class="text-lg font-bold">Total</p>
+                            <div class="">
+                                <p class="mb-1 text-lg font-bold">${total}</p>
+                                <p class="text-sm text-gray-700">IVA incluido</p>
+                            </div>
+                        </div>
+
+                        <button onClick={handlePay} className="p-10 mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Finalizar Compra</button>
+                    </>
+                )}
             </div>
         </div>
     </div>;
