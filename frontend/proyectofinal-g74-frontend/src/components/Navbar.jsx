@@ -49,7 +49,7 @@ export default function Navbar() {
           <Link to="/Favoritos" class="hover:text-blue-200 transition" >
             <i className="fas fa-heart text-blue w-9 h-9 flex justify-center items-center hover:text-black text-2xl"></i>
           </Link>
-          <Link to="/Shopping" class="hover:text-blue-200 transition" >
+          <Link to="/Checkout" class="hover:text-blue-200 transition" >
             <i className="fas fa-shopping-cart text-blue w-9 h-9 flex justify-center items-center hover:text-black text-2xl"></i>
           </Link>
           <Link to="/Profile" class="hover:text-blue-200 transition" >
