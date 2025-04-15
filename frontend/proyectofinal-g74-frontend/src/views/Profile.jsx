@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 export default function Profile() {
   return <div className="bg-gray-100">
@@ -73,9 +74,15 @@ export default function Profile() {
                 <div class="mt-6 bg-white rounded-lg shadow-md p-4">
                     <h3 class="font-semibold text-gray-800 mb-3">Acciones rápidas</h3>
                     <div class="space-y-2">
+                        <Link to="/" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition" >
+                        Crear publicación
+                                    </Link>
                         <a href="product-form.html" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition">
                             <i class="fas fa-plus-circle mr-1"></i> Crear publicación
                         </a>
+                        <Link to="/" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition" >
+                        Promocionar productos
+                                    </Link>
                         <a href="#" class="block w-full text-center bg-gray-800 hover:bg-gray-900 text-white py-2 px-4 rounded-md transition">
                             <i class="fas fa-arrow-trend-up mr-1"></i> Promocionar productos
                         </a>
