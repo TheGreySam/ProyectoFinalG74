@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaUser, FaHeart, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
 
 export default function Navbar() {
   const [toggle, setToggle] = useState(false);
@@ -7,6 +8,13 @@ export default function Navbar() {
   const showNav = () => {
     setToggle(!toggle);
   };
+
+  const iconList = [
+    { icon: <FaShoppingCart />},
+    { icon: <FaHeart />},
+    { icon: <FaUser />}
+    
+  ];
 
   // start mobile first plus facile
   return (
@@ -27,25 +35,25 @@ export default function Navbar() {
           className={`${toggle ? " flex" : " hidden"
             } flex-col justify-center items-center w-full first:mt-2 md:flex-row md:w-auto md:space-x-10 md:flex`}
         >
-          {/* {navbarData.map((link, index) => {
-            return (
-              <li key={index} className={link.cname}>
-                <Link
-                  className="hover:text-sky-500"
-                  to={link.href}
-                  onClick={showNav}
-                >
-                  {link.title}
-                </Link>
-              </li>
-            );
-          })} */}
-
           <Link to="/" class="hover:text-blue-200 transition" >
             Inicio
           </Link>
           <Link to="/Gallery" class="hover:text-blue-200 transition" >
             Galeria
+          </Link>
+        </ul>
+        <ul
+          className={`${toggle ? " flex" : " hidden"
+            } flex-col justify-center items-center w-full first:mt-2 md:flex-row md:w-auto md:space-x-10 md:flex`}
+        >
+          <Link to="/Favoritos" class="hover:text-blue-200 transition" >
+            <i className="fas fa-heart text-blue w-9 h-9 flex justify-center items-center hover:text-black text-2xl"></i>
+          </Link>
+          <Link to="/Shopping" class="hover:text-blue-200 transition" >
+            <i className="fas fa-shopping-cart text-blue w-9 h-9 flex justify-center items-center hover:text-black text-2xl"></i>
+          </Link>
+          <Link to="/Profile" class="hover:text-blue-200 transition" >
+            <i className="fas fa-user text-blue w-9 h-9 flex justify-center items-center hover:text-black text-2xl"></i>
           </Link>
           
         </ul>
