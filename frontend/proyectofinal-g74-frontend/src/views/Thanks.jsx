@@ -11,11 +11,12 @@ export default function Thanks() {
                     <h1 class="text-center mb-8">Gracias por comprar con nosotros</h1>
                     <p class="text-gray-600">
                         Te hemos enviado un correo con los detalles (funcionalidad por implementar)
-                        <Link to="/Register" class="hover:text-blue-200 transition" >
-                            Volver al inicio
-                        </Link>
+                        
 
                     </p>
+                    <Link to="/Register" class="hover:text-blue-200 transition p-4" >
+                            Volver al inicio
+                        </Link>
                 </div>
             </div>
         </div>
