@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useFavorites } from "../context/FavoritesContext.jsx";
 import Products from "../data/Products.js";
+import { useState, useEffect } from "react";
 
 // const mockProducts = [
 //     { id: 1, name: "Producto 1", price: 100, oldPrice: 200, image: "https://picsum.photos/200/100", brand: "Marca 1", isNew: true, stock: 4 },
@@ -19,6 +20,57 @@ export default function Gallery() {
     const { addToCart } = useCart();
     const { toggleFavorite, isFavorite } = useFavorites();
 
+    const [products, setProducts] = useState([]);
+    const [filtered, setFiltered] = useState([]);
+    const [search, setSearch] = useState("");
+    const [minPrice, setMinPrice] = useState("");
+    const [maxPrice, setMaxPrice] = useState("");
+    const [brandFilter, setBrandFilter] = useState("");
+
+    useEffect(() => {
+        fetch("http://localhost:3000/products")
+        .then((res) => res.json())
+        .then((data) => {
+            const formatted = data.map((product) => ({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                oldPrice: product.oldPrice,
+                image: product.image,
+                brand: product.brand,
+                isNew: product.isNew,
+                stock: product.stock,
+                size: product.size,
+                color: product.color,
+                year: product.year,
+                detalle_producto: product.detalle_producto,
+            }));
+            setProducts(formatted);
+            setFiltered(formatted);
+        });
+    }, []);
+
+    useEffect(() => {
+        let results = products;
+        if (search) {
+            results = results.filter((product) =>
+                product.name.toLowerCase().includes(search.toLowerCase())
+            );
+        }
+        if (brandFilter) {
+            results = results.filter((product) => 
+                product.brand === brandFilter);
+        }
+        if (minPrice !== "") {
+            results = results.filter((product) => product.price >= parseFloat(minPrice));
+        }
+        if (maxPrice !== "") {
+            results = results.filter((product) => product.price <= parseFloat(maxPrice));
+        }
+        setFiltered(results);
+    }, [search, minPrice, maxPrice, brandFilter, products]);
+
+    
     return <div class="bg-gray-100">
         {/* <!-- Barra de búsqueda --> */}
         <div class="bg-white border-b">
@@ -306,8 +358,8 @@ export default function Gallery() {
 
                                             // class="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition"
                                             className={` px-4 py-2 rounded-md text-white font-semibold transition ${product.stock === 0
-                                                    ? "bg-gray-400 cursor-not-allowed"
-                                                    : "bg-blue-600 hover:bg-blue-700"
+                                                ? "bg-gray-400 cursor-not-allowed"
+                                                : "bg-blue-600 hover:bg-blue-700"
                                                 }`}
                                         >
                                             {product.stock === 0 ? "Sin stock" : <i class="fas fa-shopping-cart"></i>}
