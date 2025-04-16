@@ -216,13 +216,14 @@ export default function Gallery() {
                     </div>
 
                     {/* <!-- Grilla de productos --> */}
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
                         {/* <!-- Productos --> */}
                         {mockProducts.map(product => (
-                            <div key={product.id} class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                            <div key={product.id} class={`bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow
+                            ${product.stock === 0 ? "opacity-50 grayscale" : ""}`}>
                                 <a href="product-detail.html" class="block relative">
                                     <img src={product.image} alt={product.id} class="w-full h-48 sm:h-56 object-cover" />
-                                    <span class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-md">
+                                    <div className="absolute top-2 left-2 flex flex-col gap-1">
                                         {product.price < product.oldPrice && (
                                             <span className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
                                                 -{Math.round(100 - (product.price * 100) / product.oldPrice)}%
@@ -238,7 +239,7 @@ export default function Gallery() {
                                                 Agotado
                                             </span>
                                         )}
-                                    </span>
+                                    </div>
                                     <button class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow hover:bg-gray-100">
                                         <i class="far fa-heart text-gray-600"></i>
                                     </button>
@@ -262,8 +263,17 @@ export default function Gallery() {
                                             <span class="font-bold text-blue-600 block">${product.price}</span>
                                         </div>
                                         <button onClick={() => addToCart(product)}
-                                            class="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition">
-                                            <i class="fas fa-shopping-cart"></i>
+                                        
+                                            // class="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition"
+                                            className={` px-4 py-2 rounded-md text-white font-semibold transition ${
+                                                product.stock === 0
+                                                  ? "bg-gray-400 cursor-not-allowed"
+                                                  : "bg-blue-600 hover:bg-blue-700"
+                                              }`}
+                                            >
+                                              {product.stock === 0 ? "Sin stock" : <i class="fas fa-shopping-cart"></i>}
+                                            
+                                            
                                         </button>
                                     </div>
                                 </div>
@@ -272,7 +282,7 @@ export default function Gallery() {
 
 
 
-                        
+
                     </div>
 
                     {/* <!-- Paginación --> */}
