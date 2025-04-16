@@ -9,6 +9,8 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { FavoritesProvider } from './context/FavoritesContext';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -28,38 +30,65 @@ import Thanks from './views/Thanks';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 
+
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-      <CartProvider>
-        <FavoritesProvider>
-          <Router>
-            <Navbar />
-            <div style={{ padding: "1rem" }}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/Gallery" element={<Gallery />} />
-                <Route path="/CrearPublicacion" element={<CreatePost />} />
-                <Route path="/PromocionarPublicacion" element={<PromotePost />} />
-                <Route path="/DetallePublicacion/:id" element={<DetailPost />} />
-                <Route path="/Favoritos" element={<FavoritePosts />} />
-                <Route path="/Login" element={<Login />} />
-                <Route path="/UsuarioPublicacion" element={<MyPosts />} />
-                <Route path="/Shopping" element={<ShoppingCart />} />
-                <Route path="/Checkout" element={<Checkout />} />
-                <Route path="/Profile" element={<Profile />} />
-                <Route path="/Register" element={<Register />} />
-                <Route path="/Gracias" element={<Thanks />} />
-                <Route path="*" element={<h1>404 Not Found</h1>} />
-              </Routes>
-              <ToastContainer />
-            </div>
-            <Footer />
-          </Router>
-        </FavoritesProvider>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <FavoritesProvider>
+            <Router>
+              <Navbar />
+              <div style={{ padding: "1rem" }}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/Gallery" element={<Gallery />} />
+                  <Route
+                    path="/CrearPublicacion"
+                    element={
+                      <ProtectedRoute>
+                        <CreatePost />
+                      </ProtectedRoute>
+                    } />
+                  <Route path="/PromocionarPublicacion" element={
+                    <ProtectedRoute>
+                      <PromotePost />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/DetallePublicacion/:id" element={
+                    <ProtectedRoute>
+                      <DetailPost />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/Favoritos" element={
+                    <ProtectedRoute>
+                      <FavoritePosts />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/Login" element={<Login />} />
+                  <Route path="/UsuarioPublicacion" element={
+                    <ProtectedRoute>
+                      <MyPosts />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/Shopping" element={<ShoppingCart />} />
+                  <Route path="/Checkout" element={<Checkout />} />
+                  <Route path="/Profile" element={
+                    <Profile />
+                  } />
+                  <Route path="/Register" element={<Register />} />
+                  <Route path="/Gracias" element={<Thanks />} />
+                  <Route path="*" element={<h1>404 Not Found</h1>} />
+                </Routes>
+                <ToastContainer />
+              </div>
+              <Footer />
+            </Router>
+          </FavoritesProvider>
+        </CartProvider>
+      </AuthProvider>
     </>
   )
 }

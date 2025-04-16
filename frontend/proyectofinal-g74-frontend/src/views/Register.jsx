@@ -1,8 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
 
-export default function Register() {
-  return <div class="bg-gray-100">
+const Register = () => {
+
+    const { register } = useAuth();
+    const [name, setName] = useState("");
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        register(email, password);
+    };
+
+
+  return (
+    <div class="bg-gray-100">
 
 
 
@@ -26,6 +42,8 @@ export default function Register() {
                               type="text" 
                               id="name" 
                               name="name" 
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
                               placeholder="Escribe tu nombre completo" 
                               class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                               required
@@ -44,6 +62,8 @@ export default function Register() {
                               type="email" 
                               id="email" 
                               name="email" 
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                               placeholder="ejemplo@correo.com" 
                               class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                               required
@@ -62,6 +82,8 @@ export default function Register() {
                               type="password" 
                               id="password" 
                               name="password" 
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                               placeholder="Mínimo 8 caracteres" 
                               class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                               required
@@ -81,6 +103,8 @@ export default function Register() {
                               type="password" 
                               id="confirm-password" 
                               name="confirm-password" 
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
                               placeholder="Confirma tu contraseña" 
                               class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                               required
@@ -131,5 +155,8 @@ export default function Register() {
       </div>
   </div>
 
-</div>;
-}
+</div>
+  );
+};
+
+export default Register;

@@ -1,8 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
 
-export default function Login() {
-    return <div className="bg-gray-100">
+const Login = () => {
+    const { login } = useAuth();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        login(email, password);
+    };  
+
+
+    return (
+        <div className="bg-gray-100">
         <div className="container mx-auto px-4 py-16 max-w-md">
             <div class="bg-white rounded-lg shadow-md p-8">
                 <div class="text-center mb-8">
@@ -10,7 +23,7 @@ export default function Login() {
                     <p class="text-gray-600 mt-2">Accede a tu cuenta para comprar y vender</p>
                 </div>
 
-                <form>
+                <form onSubmit={handleSubmit} >
                     <div class="space-y-6">
 
                         <div>
@@ -23,6 +36,8 @@ export default function Login() {
                                     type="email"
                                     id="email"
                                     name="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     placeholder="ejemplo@correo.com"
                                     class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                                     required
@@ -41,6 +56,8 @@ export default function Login() {
                                     type="password"
                                     id="password"
                                     name="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                     placeholder="Ingresa tu contraseña"
                                     class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                                     required
@@ -93,5 +110,8 @@ export default function Login() {
                 </div>
             </div>
         </div>
-    </div>;
-}
+    </div>
+    );
+};
+
+export default Login;
