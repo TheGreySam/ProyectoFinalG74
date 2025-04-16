@@ -1,0 +1,147 @@
+// src/data/mockProducts.js
+const Products = [
+    {
+      id: 1,
+      name: "Producto 1",
+      price: 100,
+      oldPrice: 200,
+      image: "https://picsum.photos/200/100",
+      brand: "Marca 1",
+      stock: 5,
+      size: "M",
+      color: "Rojo",
+      year: 2023,
+      isNew: "true",
+      detalle_producto: "Descripción extensa del producto 1."
+    },
+    {
+        id: 2,
+        name: "Producto 2",
+        price: 200,
+        oldPrice: 200,
+        image: "https://picsum.photos/200/200",
+        brand: "Marca 4",
+        stock: 0,
+        size: "M",
+        color: "Verde",
+        year: 2020,
+        isNew: "false",
+        detalle_producto: "Descripción extensa del producto 1."
+      },
+      {
+        id: 3,
+        name: "Producto 3",
+        price: 100,
+        oldPrice: 200,
+        image: "https://picsum.photos/200/190",
+        brand: "Marca 1",
+        stock: 5,
+        size: "M",
+        color: "Rojo",
+        year: 2023,
+        isNew: "true",
+        detalle_producto: "Descripción extensa del producto 1."
+      },
+      {
+        id: 4,
+        name: "Producto 4",
+        price: 100,
+        oldPrice: 200,
+        image: "https://picsum.photos/200/180",
+        brand: "Marca 1",
+        stock: 5,
+        size: "M",
+        color: "Rojo",
+        year: 2023,
+        isNew: "true",
+        detalle_producto: "Descripción extensa del producto 1."
+      },
+      {
+        id: 5,
+        name: "Producto 5",
+        price: 100,
+        oldPrice: 200,
+        image: "https://picsum.photos/200/170",
+        brand: "Marca 1",
+        stock: 5,
+        size: "M",
+        color: "Rojo",
+        year: 2023,
+        isNew: "false",
+        detalle_producto: "Descripción extensa del producto 1."
+      },
+      {
+        id: 6,
+        name: "Producto 6",
+        price: 100,
+        oldPrice: 2000,
+        image: "https://picsum.photos/200/160",
+        brand: "Marca 6",
+        stock: 0,
+        size: "M",
+        color: "Rojo",
+        year: 2023,
+        isNew: "false",
+        detalle_producto: "Descripción extensa del producto 1."
+      },
+      {
+        id: 7,
+        name: "Producto 7",
+        price: 100,
+        oldPrice: 200,
+        image: "https://picsum.photos/200/150",
+        brand: "Marca 1",
+        stock: 5,
+        size: "M",
+        color: "Rojo",
+        year: 2023,
+        isNew: "false",
+        detalle_producto: "Descripción extensa del producto 1."
+      },
+      {
+        id: 8,
+        name: "Producto 8",
+        price: 100,
+        oldPrice: 200,
+        image: "https://picsum.photos/200/140",
+        brand: "Marca 1",
+        stock: 5,
+        size: "M",
+        color: "Rojo",
+        year: 2023,
+        isNew: "false",
+        detalle_producto: "Descripción extensa del producto 1."
+      },
+      {
+        id: 9,
+        name: "Producto 9",
+        price: 2300,
+        oldPrice: 2500,
+        image: "https://picsum.photos/200/130",
+        brand: "Marca 1",
+        stock: 53,
+        size: "M",
+        color: "Rojo",
+        year: 2023,
+        isNew: "false",
+        detalle_producto: "Descripción extensa del producto 1."
+      },
+      {
+        id: 10,
+        name: "Producto 10",
+        price: 100,
+        oldPrice: 200,
+        image: "https://picsum.photos/200/120",
+        brand: "Marca 1",
+        stock: 5,
+        size: "M",
+        color: "Rojo",
+        year: 2023,
+        isNew: "false",
+        detalle_producto: "Descripción extensa del producto 1."
+      }
+    // más productos...
+  ];
+  
+  export default Products;
+  
