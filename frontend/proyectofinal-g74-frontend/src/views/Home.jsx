@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
+import Products from "../data/Products.js";
 
-const mockProducts = [
-  { id: 1, name: "Producto 1", price: 100, image: "https://picsum.photos/200/100" },
-  { id: 2, name: "Producto 2", price: 200, image: "https://picsum.photos/200/200" },
-  { id: 3, name: "Producto 3", price: 300, image: "https://picsum.photos/200/300" },
-];
+// const mockProducts = [
+//   { id: 1, name: "Producto 1", price: 100, image: "https://picsum.photos/200/100" },
+//   { id: 2, name: "Producto 2", price: 200, image: "https://picsum.photos/200/200" },
+//   { id: 3, name: "Producto 3", price: 300, image: "https://picsum.photos/200/300" },
+// ];
 
 export default function Home() {
   const { addToCart } = useCart();
@@ -81,19 +82,19 @@ export default function Home() {
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               
               {/* <!-- Productos --> */}
-              {mockProducts.map(product => (
+              {Products.slice(0,4).map(product => (
                 <div key={product.id} class="bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
                   <img class="w-full h-40 object-cover" src={product.image} alt={product.id} />
                   <div class="p-4">
                     <h3 class="font-semibold text-lg">{product.name}</h3>
-                    <div class="flex text-yellow-400 mt-1">
+                    {/* <div class="flex text-yellow-400 mt-1">
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star"></i>
                       <i class="fas fa-star-half-alt"></i>
                       <span class="text-gray-500 ml-1 text-sm">(126)</span>
-                    </div>
+                    </div> */}
                     <div class="flex justify-between items-center mt-2">
                       <p class="text-blue-600 font-bold">${product.price}</p>
                       <button onClick={() => addToCart(product)} 
