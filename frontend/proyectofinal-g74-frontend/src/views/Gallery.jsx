@@ -2,17 +2,18 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import { useFavorites } from "../context/FavoritesContext.jsx";
+import Products from "../data/Products.js";
 
-const mockProducts = [
-    { id: 1, name: "Producto 1", price: 100, oldPrice: 200, image: "https://picsum.photos/200/100", brand: "Marca 1", isNew: true, stock: 4 },
-    { id: 2, name: "Producto 2", price: 200, oldPrice: 400, image: "https://picsum.photos/200/200", brand: "Marca 2", isNew: false, stock: 1 },
-    { id: 3, name: "Producto 3", price: 300, oldPrice: 600, image: "https://picsum.photos/200/300", brand: "Marca 3", isNew: false, stock: 13 },
-    { id: 4, name: "Producto 4", price: 400, oldPrice: 500, image: "https://picsum.photos/200/400", brand: "Marca 3", isNew: true, stock: 9 },
-    { id: 5, name: "Producto 5", price: 500, oldPrice: 500, image: "https://picsum.photos/200/500", brand: "Marca 5", isNew: false, stock: 0 },
-    { id: 6, name: "Producto 6", price: 600, oldPrice: 600, image: "https://picsum.photos/200/600", brand: "Marca 3", isNew: false, stock: 0 },
-    { id: 7, name: "Producto 7", price: 700, oldPrice: 2000, image: "https://picsum.photos/200/700", brand: "Marca 9", isNew: true, stock: 10 },
-    { id: 8, name: "Producto 8", price: 800, oldPrice: 2100, image: "https://picsum.photos/200/800", brand: "Marca 6", isNew: false, stock: 1 },
-];
+// const mockProducts = [
+//     { id: 1, name: "Producto 1", price: 100, oldPrice: 200, image: "https://picsum.photos/200/100", brand: "Marca 1", isNew: true, stock: 4 },
+//     { id: 2, name: "Producto 2", price: 200, oldPrice: 400, image: "https://picsum.photos/200/200", brand: "Marca 2", isNew: false, stock: 1 },
+//     { id: 3, name: "Producto 3", price: 300, oldPrice: 600, image: "https://picsum.photos/200/300", brand: "Marca 3", isNew: false, stock: 13 },
+//     { id: 4, name: "Producto 4", price: 400, oldPrice: 500, image: "https://picsum.photos/200/400", brand: "Marca 3", isNew: true, stock: 9 },
+//     { id: 5, name: "Producto 5", price: 500, oldPrice: 500, image: "https://picsum.photos/200/500", brand: "Marca 5", isNew: false, stock: 0 },
+//     { id: 6, name: "Producto 6", price: 600, oldPrice: 600, image: "https://picsum.photos/200/600", brand: "Marca 3", isNew: false, stock: 0 },
+//     { id: 7, name: "Producto 7", price: 700, oldPrice: 2000, image: "https://picsum.photos/200/700", brand: "Marca 9", isNew: true, stock: 10 },
+//     { id: 8, name: "Producto 8", price: 800, oldPrice: 2100, image: "https://picsum.photos/200/800", brand: "Marca 6", isNew: false, stock: 1 },
+// ];
 
 export default function Gallery() {
     const { addToCart } = useCart();
@@ -220,7 +221,7 @@ export default function Gallery() {
                     {/* <!-- Grilla de productos --> */}
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
                         {/* <!-- Productos --> */}
-                        {mockProducts.map(product => (
+                        {Products.map(product => (
                             <div key={product.id} class={`bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow
                             ${product.stock === 0 ? "opacity-50 grayscale" : ""}`}>
                                 {/* <a href="product-detail.html" class="block relative">
@@ -253,7 +254,7 @@ export default function Gallery() {
                                     </button>
                                 </a> */}
                                 <div className="block relative">
-                                <img src={product.image} alt={product.id} class="w-full h-48 sm:h-56 object-cover" />
+                                    <img src={product.image} alt={product.id} class="w-full h-48 sm:h-56 object-cover" />
                                     <div className="absolute top-2 left-2 flex flex-col gap-1">
                                         {product.price < product.oldPrice && (
                                             <span className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
@@ -272,15 +273,15 @@ export default function Gallery() {
                                         )}
                                     </div>
                                     <button
-  onClick={() => toggleFavorite(product)}
-  className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow hover:bg-gray-100"
->
-  {isFavorite(product.id) ? (
-    <i className="fas fa-heart text-red-600"></i>
-  ) : (
-    <i className="far fa-heart text-gray-600"></i>
-  )}
-</button>
+                                        onClick={() => toggleFavorite(product)}
+                                        className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow hover:bg-gray-100"
+                                    >
+                                        {isFavorite(product.id) ? (
+                                            <i className="fas fa-heart text-red-600"></i>
+                                        ) : (
+                                            <i className="far fa-heart text-gray-600"></i>
+                                        )}
+                                    </button>
                                 </div>
                                 <div class="p-4">
                                     {/* <a href="product-detail.html">
@@ -302,17 +303,16 @@ export default function Gallery() {
                                             <span class="font-bold text-blue-600 block">${product.price}</span>
                                         </div>
                                         <button onClick={() => addToCart(product)}
-                                        
+
                                             // class="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded-full transition"
-                                            className={` px-4 py-2 rounded-md text-white font-semibold transition ${
-                                                product.stock === 0
-                                                  ? "bg-gray-400 cursor-not-allowed"
-                                                  : "bg-blue-600 hover:bg-blue-700"
-                                              }`}
-                                            >
-                                              {product.stock === 0 ? "Sin stock" : <i class="fas fa-shopping-cart"></i>}
-                                            
-                                            
+                                            className={` px-4 py-2 rounded-md text-white font-semibold transition ${product.stock === 0
+                                                    ? "bg-gray-400 cursor-not-allowed"
+                                                    : "bg-blue-600 hover:bg-blue-700"
+                                                }`}
+                                        >
+                                            {product.stock === 0 ? "Sin stock" : <i class="fas fa-shopping-cart"></i>}
+
+
                                         </button>
                                     </div>
                                 </div>
