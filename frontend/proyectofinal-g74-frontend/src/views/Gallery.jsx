@@ -70,7 +70,7 @@ export default function Gallery() {
         setFiltered(results);
     }, [search, minPrice, maxPrice, brandFilter, products]);
 
-    
+
     return <div class="bg-gray-100">
         {/* <!-- Barra de búsqueda --> */}
         <div class="bg-white border-b">
@@ -78,28 +78,56 @@ export default function Gallery() {
                 <div class="flex flex-col md:flex-row items-center">
                     <div class="w-full md:w-1/2 mb-4 md:mb-0">
                         <div class="flex items-center w-full">
-                            <input type="text" placeholder="Buscar productos..." class="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                            <button class="bg-blue-600 text-white p-2 rounded-r-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                            <input 
+                            type="text" 
+                            placeholder="Buscar productos..." 
+                            class="border p-2 rounded w-full" 
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            />
+                            <button class="m-2 bg-blue-600 text-white p-2 rounded-r-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
                     </div>
                     <div class="w-full md:w-1/2 flex justify-end space-x-2">
-                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
-                            <option value="relevance">Relevancia</option>
+                        {/* <select 
+                        class="border p-2 rounded w-full"
+                        value={brandFilter}
+                        onChange={(e) => setBrandFilter(e.target.value)}
+                        >
+                            <option value="">Todas las marcas</option>
+                            {[...new Set(products.map(product => product.brand))].map((brand, index) => (
+                                <option key={index} value={brand}>{brand}</option>
+                            ))}
+                            {/* <option value="relevance">Relevancia</option>
                             <option value="price_asc">Precio: menor a mayor</option>
                             <option value="price_desc">Precio: mayor a menor</option>
                             <option value="newest">Más recientes</option>
-                            <option value="popular">Más populares</option>
-                        </select>
-                        <div class="flex border border-gray-300 rounded-lg overflow-hidden">
+                            <option value="popular">Más populares</option> 
+                        </select> */}
+                        {/* <div class="flex border border-gray-300 rounded-lg overflow-hidden">
                             <button class="px-3 py-2 bg-white text-gray-600 hover:bg-gray-100 active:bg-blue-50 active:text-blue-600">
                                 <i class="fas fa-th-large"></i>
                             </button>
                             <button class="px-3 py-2 bg-gray-100 text-blue-600 hover:bg-gray-100">
                                 <i class="fas fa-list"></i>
                             </button>
-                        </div>
+                        </div> */}
+                        {/* <input 
+                        type="number"
+                        placeholder="Precio minimo"
+                        value={minPrice}
+                        onChange={(e) => setMinPrice(e.target.value)}
+                        className="border p-2 rounded w-full" 
+                        />
+                        <input 
+                        type="number"
+                        placeholder="Precio maximo"
+                        value={maxPrice}
+                        onChange={(e) => setMaxPrice(e.target.value)}
+                        className="border p-2 rounded w-full" 
+                        /> */}
                     </div>
                 </div>
             </div>
@@ -116,7 +144,7 @@ export default function Gallery() {
                         {/* <!-- Categorías --> */}
                         <div class="mb-6">
                             <h3 class="font-medium mb-2">Categorías</h3>
-                            <div class="space-y-2">
+                            {/* <div class="space-y-2">
                                 <div class="flex items-center">
                                     <input id="cat-all" type="checkbox" checked class="h-4 w-4 text-blue-600 rounded" />
                                     <label for="cat-all" class="ml-2 text-gray-700">Todas</label>
@@ -142,7 +170,22 @@ export default function Gallery() {
                                     <label for="cat-accessories" class="ml-2 text-gray-700">Accesorios</label>
                                 </div>
                             </div>
-                            <button class="text-blue-600 hover:underline text-sm mt-2">Ver más</button>
+                            <button class="text-blue-600 hover:underline text-sm mt-2">Ver más</button> */}
+                            <select 
+                        class="border p-2 rounded w-full"
+                        value={brandFilter}
+                        onChange={(e) => setBrandFilter(e.target.value)}
+                        >
+                            <option value="">Todas las marcas</option>
+                            {[...new Set(products.map(product => product.brand))].map((brand, index) => (
+                                <option key={index} value={brand}>{brand}</option>
+                            ))}
+                            {/* <option value="relevance">Relevancia</option>
+                            <option value="price_asc">Precio: menor a mayor</option>
+                            <option value="price_desc">Precio: mayor a menor</option>
+                            <option value="newest">Más recientes</option>
+                            <option value="popular">Más populares</option> */}
+                        </select>
                         </div>
 
                         {/* <!-- Rango de precio --> */}
@@ -152,14 +195,29 @@ export default function Gallery() {
                                 <div class="flex items-center justify-between gap-4">
                                     <div class="w-1/2">
                                         <label class="text-xs text-gray-500">Mínimo</label>
-                                        <input type="number" placeholder="$0" min="0" class="w-full px-3 py-1 border border-gray-300 rounded" />
+                                        {/* <input type="number" placeholder="$0" min="0" class="w-full px-3 py-1 border border-gray-300 rounded" /> */}
+                                        <input 
+                        type="number"
+                        placeholder="0"
+                        value={minPrice}
+                        onChange={(e) => setMinPrice(e.target.value)}
+                        className="border p-2 rounded w-full" 
+                        />
+                        
                                     </div>
                                     <div class="w-1/2">
                                         <label class="text-xs text-gray-500">Máximo</label>
-                                        <input type="number" placeholder="$1000" min="0" class="w-full px-3 py-1 border border-gray-300 rounded" />
+                                        {/* <input type="number" placeholder="$1000" min="0" class="w-full px-3 py-1 border border-gray-300 rounded" /> */}
+                                        <input 
+                        type="number"
+                        placeholder="1000"
+                        value={maxPrice}
+                        onChange={(e) => setMaxPrice(e.target.value)}
+                        className="border p-2 rounded w-full" 
+                        />
                                     </div>
                                 </div>
-                                <input type="range" min="0" max="1000" value="500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
+                                {/* <input type="range" min="0" max="1000" value="500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" /> */}
                             </div>
                         </div>
 
@@ -187,7 +245,7 @@ export default function Gallery() {
                         </div>
 
                         {/* <!-- Valoración --> */}
-                        <div class="mb-6">
+                        {/* <div class="mb-6">
                             <h3 class="font-medium mb-2">Valoración</h3>
                             <div class="space-y-2">
                                 <div class="flex items-center">
@@ -233,17 +291,17 @@ export default function Gallery() {
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* <!-- Botones de filtro --> */}
-                        <div class="flex space-x-4 mt-6">
+                        {/* <div class="flex space-x-4 mt-6">
                             <button class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
                                 Aplicar filtros
                             </button>
                             <button class="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition">
                                 Limpiar
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
@@ -273,7 +331,7 @@ export default function Gallery() {
                     {/* <!-- Grilla de productos --> */}
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
                         {/* <!-- Productos --> */}
-                        {Products.map(product => (
+                        {filtered.map(product => (
                             <div key={product.id} class={`bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow
                             ${product.stock === 0 ? "opacity-50 grayscale" : ""}`}>
                                 {/* <a href="product-detail.html" class="block relative">
