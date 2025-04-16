@@ -52,27 +52,27 @@ export default function Home() {
                 <div class="w-full flex-none">
                   <img src="https://images.samsung.com/is/image/samsung/assets/latin_en/offer/test_students/banner_principal02.jpg?imwidth=2560" alt="Producto destacado" class="w-full h-full object-cover" />
                   <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 text-white">
-                    <h3 class="text-xl font-bold">Smartphone Galaxy PRO</h3>
-                    <p class="text-sm">El mejor smartphone del mercado con la mejor cámara</p>
-                    <p class="text-lg font-bold mt-1">$699.99</p>
+                    <h3 class="text-xl font-bold">Bienvenido a Wilfred</h3>
+                    <p class="text-sm">Tu tienda de Electronica con Envios Gratis</p>
+                    <p class="text-lg font-bold mt-1">Solo por tiempo Limitado</p>
                   </div>
                 </div>
               </div>
               {/* <!-- Controles del carrusel --> */}
-              <div class="absolute top-1/2 transform -translate-y-1/2 flex justify-between w-full px-4">
+              {/* <div class="absolute top-1/2 transform -translate-y-1/2 flex justify-between w-full px-4">
                 <button class="bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 focus:outline-none">
                   <i class="fas fa-chevron-left text-gray-800"></i>
                 </button>
                 <button class="bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 focus:outline-none">
                   <i class="fas fa-chevron-right text-gray-800"></i>
                 </button>
-              </div>
+              </div> */}
               {/* <!-- Indicadores del carrusel --> */}
-              <div class="absolute bottom-2 left-0 right-0 flex justify-center space-x-2">
+              {/* <div class="absolute bottom-2 left-0 right-0 flex justify-center space-x-2">
                 <button class="h-2 w-8 bg-blue-600 rounded-full"></button>
                 <button class="h-2 w-2 bg-white rounded-full"></button>
                 <button class="h-2 w-2 bg-white rounded-full"></button>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -120,8 +120,10 @@ export default function Home() {
               <div class="relative rounded-lg overflow-hidden bg-gradient-to-r from-purple-500 to-indigo-600 h-40">
                 <div class="p-4 text-white">
                   <h3 class="text-xl font-bold">¡50% OFF en Accesorios!</h3>
-                  <p class="mt-1">Solo por tiempo limitado</p>
-                  <button class="mt-4 bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition">Ver ofertas</button>
+                  <p class="m-5">Solo por tiempo limitado</p>
+                  
+                  <Link to="*" class="mt-5 bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition">Ver Ofertas</Link>
+
                 </div>
                 <div class="absolute right-0 bottom-0">
 
@@ -130,8 +132,9 @@ export default function Home() {
               <div class="relative rounded-lg overflow-hidden bg-gradient-to-r from-yellow-400 to-orange-500 h-40">
                 <div class="p-4 text-white">
                   <h3 class="text-xl font-bold">Nuevos Smartphones</h3>
-                  <p class="mt-1">¡Aprovecha nuestras promociones!</p>
-                  <button class="mt-4 bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition">Descubrir</button>
+                  <p class="m-5">¡Aprovecha nuestras promociones!</p>
+                  
+                  <Link to="*" class="mt-5 bg-white text-black px-4 py-2 rounded-md hover:bg-gray-200 transition">Descubrir</Link>
                 </div>
                 <div class="absolute right-0 bottom-0">
 
