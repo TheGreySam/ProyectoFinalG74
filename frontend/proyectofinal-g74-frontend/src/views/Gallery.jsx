@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
+import { useFavorites } from "../context/FavoritesContext.jsx";
 
 const mockProducts = [
     { id: 1, name: "Producto 1", price: 100, oldPrice: 200, image: "https://picsum.photos/200/100", brand: "Marca 1", isNew: true, stock: 4 },
@@ -15,6 +16,7 @@ const mockProducts = [
 
 export default function Gallery() {
     const { addToCart } = useCart();
+    const { toggleFavorite, isFavorite } = useFavorites();
 
     return <div class="bg-gray-100">
         {/* <!-- Barra de búsqueda --> */}
@@ -221,7 +223,7 @@ export default function Gallery() {
                         {mockProducts.map(product => (
                             <div key={product.id} class={`bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow
                             ${product.stock === 0 ? "opacity-50 grayscale" : ""}`}>
-                                <a href="product-detail.html" class="block relative">
+                                {/* <a href="product-detail.html" class="block relative">
                                     <img src={product.image} alt={product.id} class="w-full h-48 sm:h-56 object-cover" />
                                     <div className="absolute top-2 left-2 flex flex-col gap-1">
                                         {product.price < product.oldPrice && (
@@ -240,14 +242,51 @@ export default function Gallery() {
                                             </span>
                                         )}
                                     </div>
-                                    <button class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow hover:bg-gray-100">
-                                        <i class="far fa-heart text-gray-600"></i>
+                                    <button onClick={() => toggleFavorite(product)} 
+                                    class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow hover:bg-gray-100">
+                                        {isFavorite(product.id) ? (
+                                            <i class="fas fa-heart text-red-600"></i>
+                                        ) : (
+                                            <i class="far fa-heart text-gray-600"></i>
+                                        )}
+                                        
                                     </button>
-                                </a>
+                                </a> */}
+                                <div className="block relative">
+                                <img src={product.image} alt={product.id} class="w-full h-48 sm:h-56 object-cover" />
+                                    <div className="absolute top-2 left-2 flex flex-col gap-1">
+                                        {product.price < product.oldPrice && (
+                                            <span className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                                                -{Math.round(100 - (product.price * 100) / product.oldPrice)}%
+                                            </span>
+                                        )}
+                                        {product.isNew && (
+                                            <span className="bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                                                Nuevo
+                                            </span>
+                                        )}
+                                        {product.stock === 0 && (
+                                            <span className="bg-gray-400 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                                                Agotado
+                                            </span>
+                                        )}
+                                    </div>
+                                    <button
+  onClick={() => toggleFavorite(product)}
+  className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow hover:bg-gray-100"
+>
+  {isFavorite(product.id) ? (
+    <i className="fas fa-heart text-red-600"></i>
+  ) : (
+    <i className="far fa-heart text-gray-600"></i>
+  )}
+</button>
+                                </div>
                                 <div class="p-4">
-                                    <a href="product-detail.html">
+                                    {/* <a href="product-detail.html">
                                         <h3 class="font-medium text-gray-900 mb-1">{product.name}</h3>
-                                    </a>
+                                    </a> */}
+                                    <h3 class="font-medium text-gray-900 mb-1">{product.name}</h3>
                                     <p class="text-sm text-gray-500 mb-1">{product.brand}</p>
                                     {/* <div class="flex text-yellow-400 mb-2 text-sm">
                                 <i class="fas fa-star"></i>
