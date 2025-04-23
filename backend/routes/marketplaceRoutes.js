@@ -150,5 +150,113 @@ router.put("/usuarios/:id", async (req, res) => {
   }
 });
 
+// registrar producto
+router.post("/productos", async (req, res) => {
+  const { nombre, descripcion, precio, categoria, user_id } = req.body;
+  try {
+    const nuevoProducto = await registrarProducto({ nombre, descripcion, precio, categoria, user_id });
+    res.status(201).json(nuevoProducto);
+  } catch (error) {
+    console.error("Error al registrar producto:", error);
+    res.status(500).json({ error: "Error al registrar producto" });
+  }
+});
+
+// registrar direccion
+router.post("/direcciones", async (req, res) => {
+  const { user_id, direccion, ciudad, pais } = req.body;
+  try {
+    const nuevaDireccion = await registrarDireccion({ user_id, direccion, ciudad, pais });
+    res.status(201).json(nuevaDireccion);
+  } catch (error) {
+    console.error("Error al registrar direccion:", error);
+    res.status(500).json({ error: "Error al registrar direccion" });
+  }
+});
+
+// registrar publicacion
+router.post("/publicaciones", async (req, res) => {
+  const { producto_id, user_id, contenido } = req.body;
+  try {
+    const nuevaPublicacion = await registrarPublicacion({ producto_id, user_id, contenido });
+    res.status(201).json(nuevaPublicacion);
+  } catch (error) {
+    console.error("Error al registrar publicacion:", error);
+    res.status(500).json({ error: "Error al registrar publicacion" });
+  }
+});
+
+// registrar favorito
+router.post("/favoritos", async (req, res) => {
+  const { user_id, producto_id } = req.body;
+  try {
+    const nuevoFavorito = await registrarFavorito({ user_id, producto_id });
+    res.status(201).json(nuevoFavorito);
+  } catch (error) {
+    console.error("Error al registrar favorito:", error);
+    res.status(500).json({ error: "Error al registrar favorito" });
+  }
+});
+
+// eliminar favorito
+router.delete("/favoritos", async (req, res) => {
+  const { user_id, producto_id } = req.body;
+  try {
+    const favoritoEliminado = await eliminarFavorito({ user_id, producto_id });
+    res.status(200).json(favoritoEliminado);
+  } catch (error) {
+    console.error("Error al eliminar favorito:", error);
+    res.status(500).json({ error: "Error al eliminar favorito" });
+  }
+});
+
+// eliminar producto
+router.delete("/productos/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const productoEliminado = await eliminarProducto(id);
+    res.status(200).json(productoEliminado);
+  } catch (error) {
+    console.error("Error al eliminar producto:", error);
+    res.status(500).json({ error: "Error al eliminar producto" });
+  }
+});
+
+// eliminar direccion
+router.delete("/direcciones/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const direccionEliminada = await eliminarDireccion(id);
+    res.status(200).json(direccionEliminada);
+  } catch (error) {
+    console.error("Error al eliminar direccion:", error);
+    res.status(500).json({ error: "Error al eliminar direccion" });
+  }
+});
+
+// eliminar publicacion
+router.delete("/publicaciones/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const publicacionEliminada = await eliminarPublicacion(id);
+    res.status(200).json(publicacionEliminada);
+  } catch (error) {
+    console.error("Error al eliminar publicacion:", error);
+    res.status(500).json({ error: "Error al eliminar publicacion" });
+  }
+});
+
+// Actualizar producto
+router.put("/productos/:id", async (req, res) => {
+  const { id } = req.params;
+  const { nombre, descripcion, precio, categoria } = req.body;
+  try {
+    const productoActualizado = await actualizarProducto(id, { nombre, descripcion, precio, categoria });
+    res.status(200).json(productoActualizado);
+  } catch (error) {
+    console.error("Error al actualizar producto:", error);
+    res.status(500).json({ error: "Error al actualizar producto" });
+  }
+});
 
 module.exports = router;

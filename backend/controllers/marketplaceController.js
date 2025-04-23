@@ -90,6 +90,68 @@ const obtenerPublicacionesPorProductoId = async (productoId) => {
   return publicaciones;
 };
 
+// registrar producto
+const registrarProducto = async (producto) => {
+  const consulta = "INSERT INTO productos (id_usuario, producto, detalle, tipo, marca, color, date, descripcion, especificaciones, uso, imagen, precio, envio) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *";
+  const values = [producto.id_usuario, producto.producto, producto.detalle, producto.tipo, producto.marca, producto.color, producto.date, producto.descripcion, producto.especificaciones, producto.uso, producto.imagen, producto.precio, producto.envio];
+  const { rows: nuevoProducto } = await pool.query(consulta, values);
+  return nuevoProducto[0];
+};
+
+// registrar direccion
+const registrarDireccion = async (direccion) => {
+  const consulta = "INSERT INTO direcciones (id_usuario, pais, ciudad, comuna, direccion, codigo_postal, quien_recibe, observaciones) VALUES ($1, $2, $3, $4) RETURNING *";
+  const values = [direccion.id_usuario, direccion.pais, direccion.ciudad, direccion.comuna, direccion.direccion, direccion.codigo_postal, direccion.quien_recibe, direccion.observaciones, direccion.quien_recibe, direccion.observaciones ];
+  const { rows: nuevaDireccion } = await pool.query(consulta, values);
+  return nuevaDireccion[0];
+};
+
+// registrar publicacion
+const registrarPublicacion = async (publicacion) => {
+  const consulta = "INSERT INTO publicaciones (id_usuario, id_producto, comentario, fecha_comentario) VALUES ($1, $2, $3, $4) RETURNING *";
+  const values = [publicacion.id_usuario, publicacion.id_producto, publicacion.comentario, publicacion.fecha_comentario];
+  const { rows: nuevaPublicacion } = await pool.query(consulta, values);
+  return nuevaPublicacion[0];
+};
+
+// registrar favorito
+const registrarFavorito = async (favorito) => {
+  const consulta = "INSERT INTO favoritos (id_producto, id_usuario) VALUES ($1, $2) RETURNING *";
+  const values = [favorito.producto_id, favorito.id_usuario];
+  const { rows: nuevoFavorito } = await pool.query(consulta, values);
+  return nuevoFavorito[0];
+};
+
+// eliminar favorito
+const eliminarFavorito = async (favorito) => {
+  const consulta = "DELETE FROM favoritos WHERE id_user = $1 AND id_producto = $2 RETURNING *";
+  const values = [favorito.user_id, favorito.producto_id];
+  const { rows: eliminado } = await pool.query(consulta, values);
+  return eliminado[0];
+};
+
+// eliminar producto
+const eliminarProducto = async (productoId) => {
+  const consulta = "DELETE FROM productos WHERE id_producto = $1 RETURNING *";
+  const { rows: eliminado } = await pool.query(consulta, [productoId]);
+  return eliminado[0];
+};
+
+// eliminar direccion
+const eliminarDireccion = async (direccionId) => {
+  const consulta = "DELETE FROM direcciones WHERE id_direcciones = $1 RETURNING *";
+  const { rows: eliminado } = await pool.query(consulta, [direccionId]);
+  return eliminado[0];
+};
+
+// eliminar publicacion
+const eliminarPublicacion = async (publicacionId) => {
+  const consulta = "DELETE FROM publicaciones WHERE id_publicacion = $1 RETURNING *";
+  const { rows: eliminado } = await pool.query(consulta, [publicacionId]);
+  return eliminado[0];
+};
+
+
 module.exports = {
   registrarUsuario,
   obtenerProductos,
@@ -103,5 +165,13 @@ module.exports = {
     obtenerPublicacionesPorUsuarioId,
     obtenerUsuarioPorId,
     obtenerPublicacionesPorProductoId,
+    registrarProducto,
+  registrarDireccion,
+  registrarPublicacion,
+  registrarFavorito,
+  eliminarFavorito,
+  eliminarProducto,
+  eliminarDireccion,
+  eliminarPublicacion,
 
 };
