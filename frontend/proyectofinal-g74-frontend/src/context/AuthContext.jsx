@@ -8,13 +8,16 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     const stored = localStorage.getItem("user");
-    return stored ? JSON.parse(stored) : null;
+   
+    return stored && stored != "undefined" ? JSON.parse(stored) : null;
   });
 
   const login = (email, password) => {
     // Simula login
     const fakeUser = { id: 1, name: "Usuario", email };
+    console.log("Login exitoso", fakeUser);
     setUser(fakeUser);
+    console.log("Usuario guardado en localStorage", json.stringify(fakeUser));
     localStorage.setItem("user", JSON.stringify(fakeUser));
   };
 
