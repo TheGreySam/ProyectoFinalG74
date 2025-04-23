@@ -28,11 +28,11 @@ export default function Gallery() {
     const [brandFilter, setBrandFilter] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:3000/products")
+        fetch("http://localhost:3005/productos")
         .then((res) => res.json())
         .then((data) => {
             const formatted = data.map((product) => ({
-                id: product.id,
+                /* id: product.id,
                 name: product.name,
                 price: product.price,
                 oldPrice: product.oldPrice,
@@ -43,7 +43,24 @@ export default function Gallery() {
                 size: product.size,
                 color: product.color,
                 year: product.year,
-                detalle_producto: product.detalle_producto,
+                detalle_producto: product.detalle_producto, */
+
+                id_producto: product.id_producto,
+                    id_usuario: product.id_usuario,
+                    producto: product.producto,
+                    detalle_producto: product.detalle_producto,
+                    tipo: product.tipo,
+                    marca: product.marca,
+                    color: product.color,
+                    fecha: product.fecha,
+                    descripcion: product.descripcion,
+                    especificaciones: product.especificaciones,
+                    uso: product.uso,
+                    imagen: product.imagen,
+                    precio: product.precio,
+                    envio: product.envio,
+                    stock: product.stock,
+                    precio_anterior: product.precio_anterior,
             }));
             setProducts(formatted);
             setFiltered(formatted);
@@ -54,18 +71,18 @@ export default function Gallery() {
         let results = products;
         if (search) {
             results = results.filter((product) =>
-                product.name.toLowerCase().includes(search.toLowerCase())
+                product.producto.toLowerCase().includes(search.toLowerCase())
             );
         }
         if (brandFilter) {
             results = results.filter((product) => 
-                product.brand === brandFilter);
+                product.marca === brandFilter);
         }
         if (minPrice !== "") {
-            results = results.filter((product) => product.price >= parseFloat(minPrice));
+            results = results.filter((product) => product.precio >= parseFloat(minPrice));
         }
         if (maxPrice !== "") {
-            results = results.filter((product) => product.price <= parseFloat(maxPrice));
+            results = results.filter((product) => product.precio <= parseFloat(maxPrice));
         }
         setFiltered(results);
     }, [search, minPrice, maxPrice, brandFilter, products]);
@@ -332,7 +349,7 @@ export default function Gallery() {
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
                         {/* <!-- Productos --> */}
                         {filtered.map(product => (
-                            <div key={product.id} class={`bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow
+                            <div key={product.id_producto} class={`bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow
                             ${product.stock === 0 ? "opacity-50 grayscale" : ""}`}>
                                 {/* <a href="product-detail.html" class="block relative">
                                     <img src={product.image} alt={product.id} class="w-full h-48 sm:h-56 object-cover" />
@@ -364,11 +381,11 @@ export default function Gallery() {
                                     </button>
                                 </a> */}
                                 <div className="block relative">
-                                    <img src={product.image} alt={product.id} class="w-full h-48 sm:h-56 object-cover" />
+                                    <img src={product.imagen} alt={product.id_producto} class="w-full h-48 sm:h-56 object-cover" />
                                     <div className="absolute top-2 left-2 flex flex-col gap-1">
-                                        {product.price < product.oldPrice && (
+                                        {product.precio < product.precio_anterior && (
                                             <span className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
-                                                -{Math.round(100 - (product.price * 100) / product.oldPrice)}%
+                                                -{Math.round(100 - (product.precio * 100) / product.precio_anterior)}%
                                             </span>
                                         )}
                                         {product.isNew && (
@@ -386,7 +403,7 @@ export default function Gallery() {
                                         onClick={() => toggleFavorite(product)}
                                         className="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow hover:bg-gray-100"
                                     >
-                                        {isFavorite(product.id) ? (
+                                        {isFavorite(product.id_producto) ? (
                                             <i className="fas fa-heart text-red-600"></i>
                                         ) : (
                                             <i className="far fa-heart text-gray-600"></i>
@@ -397,8 +414,8 @@ export default function Gallery() {
                                     {/* <a href="product-detail.html">
                                         <h3 class="font-medium text-gray-900 mb-1">{product.name}</h3>
                                     </a> */}
-                                    <h3 class="font-medium text-gray-900 mb-1">{product.name}</h3>
-                                    <p class="text-sm text-gray-500 mb-1">{product.brand}</p>
+                                    <h3 class="font-medium text-gray-900 mb-1">{product.producto}</h3>
+                                    <p class="text-sm text-gray-500 mb-1">{product.marca}</p>
                                     {/* <div class="flex text-yellow-400 mb-2 text-sm">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -409,8 +426,8 @@ export default function Gallery() {
                             </div> */}
                                     <div class="flex items-center justify-between">
                                         <div>
-                                            <span class="text-gray-400 line-through text-sm">${product.oldPrice}</span>
-                                            <span class="font-bold text-blue-600 block">${product.price}</span>
+                                            <span class="text-gray-400 line-through text-sm">${product.precio_anterior}</span>
+                                            <span class="font-bold text-blue-600 block">${product.precio}</span>
                                         </div>
                                         <button onClick={() => addToCart(product)}
 
