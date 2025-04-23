@@ -2,15 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        login(email, password);
+        try {
+            await login(email, password);
+            navigate("/");
+        } catch (error) {
+            console.error("Error al iniciar sesión:", error);
+        }
+
     };  
 
 

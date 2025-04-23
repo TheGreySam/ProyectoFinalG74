@@ -6,9 +6,11 @@ const verificarCredenciales = async (email, password) => {
 
   const values = [email, password];
 
-  const { rowCount } = await pool.query(consulta, values);
+  const data = await pool.query(consulta, values);
+  //console.log(data.rows[0]);
+  if (!data.rowCount) throw { code: 404, message: "Credenciales incorrectos" };
 
-  if (!rowCount) throw { code: 404, message: "Credenciales incorrectos" };
+  return data.rows[0];
 };
 
 const generarToken = (email) => {

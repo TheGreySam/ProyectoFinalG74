@@ -11,9 +11,9 @@ const router = express.Router();
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    await verificarCredenciales(email, password);
+    const userData = await verificarCredenciales(email, password);
 
-    const token = generarToken(email);
+    const token = generarToken({ email: userData.correo, id: userData.id, nombre: userData.nombre });
 
     res.send(token);
   } catch (error) {

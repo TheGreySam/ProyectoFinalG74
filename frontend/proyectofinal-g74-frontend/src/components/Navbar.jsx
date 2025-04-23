@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUser, FaHeart, FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+
 
 export default function Navbar() {
   const { cart } = useCart();
@@ -10,6 +12,8 @@ export default function Navbar() {
   const showNav = () => {
     setToggle(!toggle);
   };
+
+  const { user, logout } = useAuth();
 
   const iconList = [
     { icon: <FaShoppingCart />},
@@ -37,9 +41,9 @@ export default function Navbar() {
           className={`${toggle ? " flex" : " hidden"
             } flex-col justify-center items-center w-full first:mt-2 md:flex-row md:w-auto md:space-x-10 md:flex`}
         >
-          <Link to="/" class="hover:text-blue-200 transition" >
+          {/* <Link to="/" class="hover:text-blue-200 transition" >
             Inicio
-          </Link>
+          </Link> */}
           <Link to="/Gallery" class="hover:text-blue-200 transition" >
             Galeria
           </Link>
@@ -66,10 +70,26 @@ export default function Navbar() {
           
         </ul>
         
-        <Link to="/Login" className={`${toggle ? " flex" : " hidden"
-            } text-indigo-800 hover:bg-gray-300 mx-auto md:mx-0 md:flex md:mt-0 items-center justify-center font-medium bg-gray-100 px-1 p-2 rounded-lg mt-4 w-24`}>
-          Login
-            </Link>
+        {user ? (
+  <div className="text-indigo-800 mx-auto md:mx-0 md:flex items-center justify-center font-medium bg-gray-100 px-3 py-2 rounded-lg mt-4">
+    Hola, {user.email.nombre}
+    <button
+      onClick={logout}
+      className="ml-4 text-sm text-red-500 hover:underline"
+    >
+      Cerrar sesión
+    </button>
+  </div>
+) : (
+  <Link
+    to="/Login"
+    className={`${toggle ? " flex" : " hidden"
+      } text-indigo-800 hover:bg-gray-300 mx-auto md:mx-0 md:flex md:mt-0 items-center justify-center font-medium bg-gray-100 px-1 p-2 rounded-lg mt-4 w-24`}
+  >
+    Login
+  </Link>
+)}
+
       </div>
     </nav>
   );
