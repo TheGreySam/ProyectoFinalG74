@@ -16,19 +16,19 @@ export default function Navbar() {
   const { user, logout } = useAuth();
 
   const iconList = [
-    { icon: <FaShoppingCart />},
-    { icon: <FaHeart />},
-    { icon: <FaUser />}
-    
+    { icon: <FaShoppingCart /> },
+    { icon: <FaHeart /> },
+    { icon: <FaUser /> }
+
   ];
 
   // start mobile first plus facile
   return (
     <nav className="top-0 w-full bg-gray-100 items-center flex p-4">
       <div className="flex justify-between items-center w-full flex-wrap md:flex-nowrap">
-      <Link to="/" class="text-2xl font-bold" >
-            Wilfred
-          </Link>
+        <Link to="/" class="text-2xl font-bold" >
+          Wilfred
+        </Link>
 
         <button
           className="flex justify-end md:hidden  rounded"
@@ -57,38 +57,38 @@ export default function Navbar() {
           </Link>
           <Link to="/Checkout" class="hover:text-blue-200 transition" >
             <i className="fas fa-shopping-cart text-blue w-9 h-9 flex justify-center items-center hover:text-black text-2xl">
-            {cart.length > 0 && (
-              <span className="right-10 bg-red-500 text-white rounded-full px-2 py-1 text-xs">
-                {cart.length}
-              </span>
-            )}
+              {cart.length > 0 && (
+                <span className="right-10 bg-red-500 text-white rounded-full px-2 py-1 text-xs">
+                  {cart.length}
+                </span>
+              )}
             </i>
           </Link>
           <Link to="/Profile" class="hover:text-blue-200 transition" >
             <i className="fas fa-user text-blue w-9 h-9 flex justify-center items-center hover:text-black text-2xl"></i>
           </Link>
-          
+
         </ul>
-        
+
         {user ? (
-  <div className="text-indigo-800 mx-auto md:mx-0 md:flex items-center justify-center font-medium bg-gray-100 px-3 py-2 rounded-lg mt-4">
-    Hola, {user.email.nombre}
-    <button
-      onClick={logout}
-      className="ml-4 text-sm text-red-500 hover:underline"
-    >
-      Cerrar sesión
-    </button>
-  </div>
-) : (
-  <Link
-    to="/Login"
-    className={`${toggle ? " flex" : " hidden"
-      } text-indigo-800 hover:bg-gray-300 mx-auto md:mx-0 md:flex md:mt-0 items-center justify-center font-medium bg-gray-100 px-1 p-2 rounded-lg mt-4 w-24`}
-  >
-    Login
-  </Link>
-)}
+          <div className="text-indigo-800 mx-auto md:mx-0 md:flex items-center justify-center font-medium bg-gray-100 px-3 py-2 rounded-lg mt-4">
+            Hola, {user.email.nombre}
+            <button
+              onClick={logout}
+              className="ml-4 text-sm text-red-500 hover:underline"
+            >
+              Cerrar sesión
+            </button>
+          </div>
+        ) : (
+          <Link
+            to="/Login"
+            className={`${toggle ? " flex" : " hidden"
+              } text-indigo-800 hover:bg-gray-300 mx-auto md:mx-0 md:flex md:mt-0 items-center justify-center font-medium bg-gray-100 px-1 p-2 rounded-lg mt-4 w-24`}
+          >
+            Login
+          </Link>
+        )}
 
       </div>
     </nav>

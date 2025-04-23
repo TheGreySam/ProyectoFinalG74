@@ -19,16 +19,16 @@ export default function Profile() {
                         <div class="w-24 h-24 rounded-full bg-gray-200 mx-auto overflow-hidden mb-4">
                             <img src="https://png.pngtree.com/png-vector/20221203/ourmid/pngtree-cartoon-style-male-user-profile-icon-vector-illustraton-png-image_6489287.png" alt="Foto de perfil" class="w-full h-full object-cover"/>
                         </div>
-                        <h2 class="text-xl font-semibold">Matias Rojas</h2>
-                        <p class="text-gray-500 text-sm">Miembro desde enero 2025</p>
-                        <p class="mt-2 flex items-center justify-center text-yellow-500">
+                        <h2 class="text-xl font-semibold">Alfredo Arredondo</h2>
+                        {/* <p class="text-gray-500 text-sm">Miembro desde enero 2025</p> */}
+                        {/* <p class="mt-2 flex items-center justify-center text-yellow-500">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                             <span class="ml-1 text-gray-600">(4.8)</span>
-                        </p>
+                        </p> */}
                     </div>
                     <div class="p-4">
                         <ul class="space-y-1">
@@ -99,13 +99,13 @@ export default function Profile() {
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <h3 class="text-sm text-gray-600 mb-1">Nombre completo</h3>
-                            <p class="font-medium">Carlos Rodríguez</p>
+                            <p class="font-medium">Alfredo Arredondo</p>
                         </div>
                         <div>
                             <h3 class="text-sm text-gray-600 mb-1">Correo electrónico</h3>
-                            <p class="font-medium">carlos.rodriguez@ejemplo.com</p>
+                            <p class="font-medium">alfredo.arredondo@gmail.com</p>
                         </div>
-                        <div>
+                        {/* <div>
                             <h3 class="text-sm text-gray-600 mb-1">Teléfono</h3>
                             <p class="font-medium">+34 612 345 678</p>
                         </div>
@@ -120,10 +120,10 @@ export default function Profile() {
                         <div>
                             <h3 class="text-sm text-gray-600 mb-1">País</h3>
                             <p class="font-medium">España</p>
-                        </div>
+                        </div> */}
                     </div>
 
-                    <div class="mt-6 pt-6 border-t">
+                    {/* <div class="mt-6 pt-6 border-t">
                         <h3 class="text-lg font-medium mb-4">Direcciones</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="p-4 border rounded-lg bg-gray-50">
@@ -158,7 +158,7 @@ export default function Profile() {
                         <button class="mt-4 text-blue-600 hover:text-blue-800 flex items-center">
                             <i class="fas fa-plus-circle mr-1"></i> Añadir nueva dirección
                         </button>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* <!-- Historial de compras recientes --> */}
