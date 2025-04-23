@@ -55,12 +55,31 @@ export const AuthProvider = ({ children }) => {
   };
 
 
-    const register = (name, email, password) => {
+    const register = async (name, email, password) => {
       // Simula registro
-      const newUser = { id: 2, name, email };
-      setUser(newUser);
-      localStorage.setItem("user", JSON.stringify(newUser));
-    };
+      //const newUser = { id: 2, name, email };
+      //setUser(newUser);
+      //localStorage.setItem("user", JSON.stringify(newUser));
+
+      const res = await axios.post("http://localhost:3005/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password })
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      toast.error("Error al registrar el usuario: " + error.message);
+      return;
+    }
+    const data = await res.json();
+    const decoded = jwtDecode(data.token);
+    setUser(decoded);
+    localStorage.setItem("token", data.token);
+
+  };
 
     const logout = () => {
       localStorage.removeItem("token");
