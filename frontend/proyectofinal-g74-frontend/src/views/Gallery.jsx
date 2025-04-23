@@ -254,10 +254,10 @@ export default function Gallery() {
                                     <input id="cond-used" type="checkbox" class="h-4 w-4 text-blue-600 rounded" />
                                     <label for="cond-used" class="ml-2 text-gray-700">Usado</label>
                                 </div>
-                                <div class="flex items-center">
+                                {/* <div class="flex items-center">
                                     <input id="cond-refurbished" type="checkbox" class="h-4 w-4 text-blue-600 rounded" />
                                     <label for="cond-refurbished" class="ml-2 text-gray-700">Reacondicionado</label>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 

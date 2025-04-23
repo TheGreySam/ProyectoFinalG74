@@ -22,7 +22,7 @@ export function CartProvider({ children }) {
     };
     setCart((prev) => [...prev, cartItem]);
     // Check if the product is already in the cart
-    toast.success(`${product.name} agregado al carrito!`, {
+    toast.success(`${product.producto} agregado al carrito!`, {
       position: "top-right",
       autoClose: 2000,
     });
